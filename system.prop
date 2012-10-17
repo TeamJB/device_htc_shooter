@@ -4,8 +4,6 @@
 
 debug.fb.rgb565 = 0
 
-The debug.sf.hw = 0
-
 #C2D
 debug.composition.type = c2d
 
@@ -17,6 +15,14 @@ gsm.sim.operator.iso-country = us
 gsm.operator.alpha = sprint
 gsm.operator.numeric = 310120
 gsm.operator.iso-country = us
+
+#
+# system props for the data modules
+#
+ro.use_data_netmgrd=true
+persist.data_netmgrd_nint=8
+persist.data_netmgrd_mtu=1472
+#
 
 #Modify MTU from 1500 to 1472 on 3G network
 ro.ril.set.mtu1472 = 1
@@ -40,6 +46,9 @@ ro.ril.def.agps.mode = 2
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
 ro.opengles.version = 131072
+
+# board has 3D panel
+persist.user.panel3D = 1
 
 # This is a high density device with more memory, so larger vm heaps for it.
 dalvik.vm.heapsize=32m

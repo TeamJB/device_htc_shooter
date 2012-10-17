@@ -56,6 +56,8 @@ WIFI_DRIVER_FW_AP_PATH      := "/system/etc/firmware/fw_bcm4329_apsta.bin"
 WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
 WIFI_DRIVER_MODULE_NAME     := "bcm4329"
 
+BOARD_NEEDS_CUTILS_LOG := true
+
 BOARD_USES_GENERIC_AUDIO := false
 BOARD_PREBUILT_LIBAUDIO := false
 
@@ -71,9 +73,11 @@ BOARD_USE_QCOM_PMEM := true
 
 BOARD_CAMERA_USE_GETBUFFERINFO := true
 BOARD_HAVE_HTC_FFC := true
+BOARD_USE_REVERSE_FFC := true
 
+BOARD_NO_RGBX_8888 := true
 BOARD_OVERLAY_FORMAT_YCbCr_420_SP := true
-
+BOARD_USE_HTC_3D := true
 TARGET_USES_C2D_COMPOSITION := true
 
 BOARD_HAVE_FM_RADIO := true
@@ -84,8 +88,9 @@ TARGET_BOOTLOADER_BOARD_NAME := shooter
 BOARD_USE_NEW_LIBRIL_HTC := true
 TARGET_PROVIDES_LIBRIL := vendor/htc/shooter/proprietary/libril.so
 
-BOARD_KERNEL_CMDLINE := no_console_suspend=1
-BOARD_KERNEL_BASE := 0x40400000
+TARGET_HAS_PREBUILT_INIT := ../../../device/htc/shooter/prebuilt/init
+BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=shooter no_console_suspend=1
+BOARD_KERNEL_BASE := 0x48000000
 BOARD_KERNEL_PAGE_SIZE := 2048 
 
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := shooter
@@ -118,16 +123,43 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 435941376
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1394606080
 BOARD_BOOTIMAGE_PARTITION_SIZE := 5242880
 BOARD_FLASH_BLOCK_SIZE := 262144
-BOARD_CUSTOM_GRAPHICS := ../../../device/htc/shooter/recovery/graphics.c
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 
 TARGET_PREBUILT_KERNEL := device/htc/shooter/kernAl
-TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/shooter/recovery-kernAl
 
+BOARD_HTCBATT := device/htc/shooter/prebuilt/htcbatt
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := 1
-BOARD_USES_RECOVERY_CHARGEMODE := true
+#BOARD_USES_RECOVERY_CHARGEMODE := true
+#BOARD_CUSTOM_GRAPHICS := ../../../device/htc/shooter/recovery/graphics.c
+BOARD_HAS_LARGE_FILESYSTEM := true
+
+#twrp settings:
+DEVICE_RESOLUTION := 540x960
+SP1_NAME := "wimax"
+SP1_DISPLAY_NAME := "WiMAX"
+SP1_BACKUP_METHOD := image
+SP1_MOUNTABLE := 0
+SP2_NAME := "udata_wimax"
+SP2_DISPLAY_NAME := "WiMAX Settings"
+SP2_BACKUP_METHOD := image
+SP2_MOUNTABLE := 0
+TW_INCLUDE_DUMLOCK := true
+TARGET_RECOVERY_INITRC := device/htc/shooter/init.htc.rc
+#TW_INCLUDE_CRYPTO := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p24"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "noauto_da_alloc"
+TW_CRYPTO_FS_FLAGS := "0x00000406"
+TW_CRYPTO_KEY_LOC := "footer"
+
+#RECOVERY_SDCARD_ON_DATA := true
+#TW_INTERNAL_STORAGE_PATH := "/data/media"
+#TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+#TW_EXTERNAL_STORAGE_PATH := "/sdcard"
+#TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
