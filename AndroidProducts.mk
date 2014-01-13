@@ -18,4 +18,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/shooter.mk
+    $(LOCAL_DIR)/htc_shooter.mk

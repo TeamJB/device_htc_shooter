@@ -70,14 +70,13 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 435941376
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1394606080
 BOARD_BOOTIMAGE_PARTITION_SIZE := 5242880
 BOARD_FLASH_BLOCK_SIZE := 262144
-BOARD_CUSTOM_GRAPHICS := ../../../device/htc/shooter/recovery/graphics.c
-TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
+#BOARD_CUSTOM_GRAPHICS := ../../../device/htc/shooter/recovery/graphics.c
+#TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 
 # Try to build the kernel
 TARGET_KERNEL_CONFIG := shooter_defconfig
-TARGET_PREBUILT_KERNEL := device/htc/shooter/kernAl
+#TARGET_PREBUILT_KERNEL := device/htc/shooter/kernAl
 
-TARGET_RECOVERY_INITRC := device/htc/shooter/recovery/init.rc
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
@@ -85,4 +84,10 @@ BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 
+# TWRP
+TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_HTCBATT := device/htc/shooter/htcbatt
 DEVICE_RESOLUTION := 540x960
+TW_INCLUDE_DUMLOCK := true
+TARGET_RECOVERY_INITRC := device/htc/shooter/init.htc.rc
